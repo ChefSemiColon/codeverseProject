@@ -7,13 +7,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RESTController {
     
-    
     @Autowired
-    BookRepository repository;
+    private final BookRepository repository;
+    
+    public RESTController(BookRepository repository){
+        this.repository = repository;
+    }
 
     @GetMapping("/home")
     public Iterable<Book> getBooks(){
         return repository.findAll();
+    }
+
+    @GetMapping("/hello")
+    public String getHello(){
+        return "Hello!";
     }
 
 }
