@@ -11,6 +11,8 @@ public class WebsiteApplication {
 		ApplicationContext context = SpringApplication.run(WebsiteApplication.class, args);
 		BookRepository repository = context.getBean(BookRepository.class);
 		repository.save(new Book("bookName", "bookAuthor"));
+		repository.save(new Book("bookName2", "bookAuthor2"));
 	}
 
 }
+ 
