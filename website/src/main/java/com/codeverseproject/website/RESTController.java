@@ -34,4 +34,15 @@ public class RESTController {
     public Optional<Book> getBookById(@PathVariable Integer id){
         return repository.findById(id);
     }
+
+    @RequestMapping("/iddelete/{id}")
+    public String deleteBookById(@PathVariable Integer id){
+        repository.deleteById(id);
+        return "Book Deleted";
+    }
+
+    @RequestMapping("/titlesearch/{title}")
+    public Optional<Book> getBookByTitle(@PathVariable String title){
+        return repository.findByTitle(title);
+    }
 }
