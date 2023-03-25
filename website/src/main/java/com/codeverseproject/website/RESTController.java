@@ -42,7 +42,12 @@ public class RESTController {
     }
 
     @RequestMapping("/titlesearch/{title}")
-    public Optional<Book> getBookByTitle(@PathVariable String title){
+    public Iterable<Book> getBookByTitle(@PathVariable String title){
         return repository.findByTitle(title);
+    }
+
+    @RequestMapping("/authorsearch/{author}")
+    public Iterable<Book> getBookByAuthor(@PathVariable String author){
+        return repository.findByAuthor(author);
     }
 }
