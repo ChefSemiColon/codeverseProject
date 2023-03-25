@@ -1,5 +1,7 @@
 package com.codeverseproject.website;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,11 +13,6 @@ public class RESTController {
     
     @Autowired
     BookRepository repository;
-    // private final BookRepository repository;
-    
-    // public RESTController(BookRepository repository){
-    //     this.repository = repository;
-    // }
 
     @GetMapping("/home")
     public Iterable<Book> getBooks(){
@@ -31,5 +28,10 @@ public class RESTController {
     public String addbook(@PathVariable String title, @PathVariable String author){
         repository.save(new Book(title, author));
         return "Book has been added";
+    }
+
+    @RequestMapping("/idsearch/{id}")
+    public Optional<Book> getBookById(@PathVariable Integer id){
+        return repository.findById(id);
     }
 }
