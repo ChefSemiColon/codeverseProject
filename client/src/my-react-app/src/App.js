@@ -16,9 +16,9 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [basket, setBasket] = useState([]);
 
-  function addBook(id) {
-    console.log(`The book was clicked:` + id);
-  }
+  // function addBook(id) {
+  //   console.log(`The book was clicked:` + id);
+  // }
 
 
   async function findBooks(value) {
