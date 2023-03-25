@@ -14,7 +14,7 @@ public class RESTController {
     @Autowired
     BookRepository repository;
 
-    @GetMapping("/home")
+    @GetMapping("/Home")
     public Iterable<Book> getBooks(){
         return repository.findAll();
     }
