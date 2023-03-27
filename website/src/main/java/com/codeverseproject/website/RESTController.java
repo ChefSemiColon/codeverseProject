@@ -24,9 +24,9 @@ public class RESTController {
         return "Hello!";
     }
 
-    @RequestMapping("/add/{title}/{author}")
-    public String addbook(@PathVariable String title, @PathVariable String author){
-        repository.save(new Book(title, author));
+    @RequestMapping("/add/{title}/{author}/{price}")
+    public String addbook(@PathVariable String title, @PathVariable String author, @PathVariable Float price){
+        repository.save(new Book(title, author, price));
         return "Book has been added";
     }
 

@@ -10,8 +10,10 @@ public class WebsiteApplication {
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(WebsiteApplication.class, args);
 		BookRepository repository = context.getBean(BookRepository.class);
-		repository.save(new Book("bookName", "bookAuthor"));
-		repository.save(new Book("bookName2", "bookAuthor2"));
+		repository.save(new Book("bookName", "bookAuthor", 9.99f));
+		repository.save(new Book("bookName2", "bookAuthor2", 9.99f));
+		repository.save(new Book("bookName3", "bookAuthor2", 9.99f));
+
 	}
 
 }
