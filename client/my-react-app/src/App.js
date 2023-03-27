@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './App.css';
 import Header from "./components/Header";
 import Container from "./components/Container";
-
+import { getAllBooks } from "./services/getbooks";
 import Book from "./components/Book";
 import Bookcase from "./components/Bookcase";
 import Search from "./components/Search";
@@ -20,39 +20,57 @@ function App() {
   //   console.log(`The book was clicked:` + id);
   // }
 
-
-  async function findBooks(value) {
-    const url = `localhost8080:/home`;
-
-    const results = await fetch(url).then((res) => res.json());
-    if (!results.error) {
-      setBooks(results.items);
+  function getFetchUsers() {
+    this.setState({
+        loading: true
+    }, () => {
+        fetch("http://localhost:3004/db.json").then(res => res.json()).then(result => this.setState({
+            loading: false,
+            users: result
+        })).catch(console.log);
+    });
+    
+}
+  useEffect(() => {
+    async function fetchBooks() {
+      if (!books) {
+        const response = await getAllBooks();
+        setBooks(response);
+      
+      }
     }
-  }
+
+    fetchBooks();
+  }, [books]);
+  
+
+
   function addBookToCart(book) {
     const newBasket = basket;
     newBasket.push(book);
     setBasket(newBasket);
     console.log({ newBasket, basket });
   }
+  console.log(books);
   return (
     <div className="App">
     <Header/>
     <Routes>
       <Route index
-          path="/Home"
+          path="/"
           element={<Container className="bookcase-Container">
             <Search
                 keyword={keyword}
                 setKeyword={setKeyword}
-                findBooks={findBooks}
+                // findBooks={findBooks}
               />
-              {/* MAP BOOKS  and add Book Component*/}
+           <Bookcase books={books}/>
           </Container>}>
           </Route>
           <Route
           path="/Bookcase"
-          element={<Bookcase />}
+          element={<Bookcase 
+          books={books}/>}
         />
         <Route path="/About" element={<h1> About</h1>} />
     </Routes>

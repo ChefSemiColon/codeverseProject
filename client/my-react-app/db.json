@@ -1,0 +1,21 @@
+{ "books":
+    [  
+    {
+        "id": 1,
+        "title": "bookName",
+        "author": "bookAuthor",
+        "price": 9.99
+    },
+    {
+        "id": 2,
+        "title": "bookName2",
+        "author": "bookAuthor2",
+        "price": 9.99
+    },
+    {
+        "id": 3,
+        "title": "bookName3",
+        "author": "bookAuthor2",
+        "price": 9.99
+    }
+]}
