@@ -1,16 +1,16 @@
-1. Create a database with the following attributes:
-    Username = postgres
-    password = postgres
-    database name = books
+1. Create a database with the following attributes:<br />
+    Username = postgres<br />
+    password = postgres<br />
+    database name = books<br />
     
-  This can be done easily with docker with the following commands in the terminal:
-    docker pull postgres
-    docker run  --name postgresdb -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -d postgres
+  This can be done easily with docker with the following commands in the terminal:<br />
+    docker pull postgres<br />
+    docker run  --name postgresdb -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -d postgres<br />
     
-  From here go into the docker container and run the following commands to create the database
-    su postgres
-    psql
-    CREATE DATABASE books;
+  From here go into the docker container and run the following commands to create the database<br />
+    su postgres<br />
+    psql<br />
+    CREATE DATABASE books;<br />
     
 2. Import the project into your IDE
 
