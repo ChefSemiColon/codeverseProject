@@ -50,4 +50,13 @@ public class RESTController {
     public Iterable<Book> getBookByAuthor(@PathVariable String author){
         return repository.findByAuthor(author);
     }
+
+
+    @RequestMapping("/add/{id}/{title}/{author}/{price}")
+    public String addbook(@PathVariable Integer id, @PathVariable String title, @PathVariable String author, @PathVariable Float price){
+		var temp = new Book(title, author, price);
+		temp.setId(id);
+		repository.save(temp);
+        return "Book updated";
+    }
 }
