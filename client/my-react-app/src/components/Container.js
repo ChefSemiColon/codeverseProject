@@ -7,7 +7,7 @@ export default function Container(props) {
     <div className="BookList-Container"
     
     style={{
-      backgroundColor: "beige"
+      backgroundColor: ""
       
        }}>
         

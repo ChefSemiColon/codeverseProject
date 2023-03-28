@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, json } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import './App.css';
 import Header from "./components/Header";
@@ -13,24 +13,41 @@ import Search from "./components/Search";
 function App() {
 
   const [books, setBooks] = useState();
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState([]);
   const [basket, setBasket] = useState([]);
 
   // function addBook(id) {
   //   console.log(`The book was clicked:` + id);
   // }
+  // async function findBooks(value) {
+  //   const url = `https://www.googleapis.com/books/v1/volumes?q=${value}&filter=paid-ebooks&print-type=books&projection=lite`;
 
-  function getFetchUsers() {
-    this.setState({
-        loading: true
-    }, () => {
-        fetch("http://localhost:3004/db.json").then(res => res.json()).then(result => this.setState({
-            loading: false,
-            users: result
-        })).catch(console.log);
-    });
+  //   const results = await fetch(url).then((res) => res.json());
+  //   if (!results.error) {
+  //     setBooks(results.items);
+  //   }
+  // }
+
+
+  useEffect(() => {
+   getAllBooks().then(json => {
+    setBooks(json)
+   }).then(json => {
+    setKeyword(json)
+   })
+  }, [])
+
+//   function getFetchUsers() {
+//     this.setState({
+//         loading: true
+//     }, () => {
+//         fetch("http://localhost:3004/db.json").then(res => res.json()).then(result => this.setState({
+//             loading: false,
+//             users: result
+//         })).catch(console.log);
+//     });
     
-}
+// }
   useEffect(() => {
     async function fetchBooks() {
       if (!books) {
@@ -62,8 +79,9 @@ function App() {
           element={<Container className="bookcase-Container">
             <Search
                 keyword={keyword}
+                books={books}
                 setKeyword={setKeyword}
-                // findBooks={findBooks}
+              //  findBooks={findBooks}
               />
            <Bookcase books={books}/>
           </Container>}>

@@ -5,6 +5,10 @@ const Book = (props) => {
     return (
       <div>
         <ul>
+        <img
+          src={book.image}
+          alt={book.title}
+        />
           <h2>{book.title}</h2>
           <h2>{book.author}</h2>
           <p>{book.price}</p>

@@ -1,30 +1,41 @@
 import React from "react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 
     const Search = (props) => {
-        const { keyword, setKeyword, findBooks} = props;
+        const { keyword, books, setKeyword} = props;
       
-        function handleChange(changeEvent) {
-          console.log("Someone Typed event =>", changeEvent);
-          setKeyword(changeEvent.target.value);
+        const handleChange = (e) => {
+          if(!e.target.value) return setKeyword(books)
+
+          const resultsArr = books.filter(book => book.title.includes(e.target.value) || 
+          book.author.includes(e.target.value))
+
+          setKeyword(resultsArr)
+        }
+       
+        const handleSubmit = (e) => {
+          e.preventDefault()
         }
       
-        function onSubmit (event) {
-          event.preventDefault()
-          findBooks(keyword)
-        }
         return (
-          <form>
-              <p style={{ color: "red" }}>
+          <header>
+          <form className="search" onSubmit={handleSubmit}>
+              {/* <p style={{ color: "red" }}>
               <em>{keyword && "Keywords Typed: " + keyword}</em>
-            </p>
-            <input
+            </p> */}
+            <input className="search__input"
               type="text"
-              value={props.keyword}
+              id="search"
+              //  value={props.keyword}
               onChange={handleChange}
+              placeholder="Search catalogue"
             />
-            <input type="submit" onClick={onSubmit} />
+            <button className="search_button">
+              <FontAwesomeIcon icon={faMagnifyingGlass}/>
+            </button>
           </form>
+          </header>
         );
       };
 
