@@ -13,6 +13,8 @@ public class Book {
     private String title;
     private String author;
 	private Float price;
+    private String imageURL;
+
 
     public Book(){
 
@@ -22,6 +24,7 @@ public class Book {
         this.title=title;
         this.author=author;
         this.price=price;
+        this.imageURL = "http://books.google.com/books/content?id=9j4JGEkCA5cC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api";
     }
 
 	public Integer getId() {
@@ -55,4 +58,12 @@ public class Book {
 	public void setPrice(Float price) {
 		this.price=price;
 	}
+
+    public String getImage(){
+        return imageURL;
+    }
+
+    public void setImage(String imageURL){
+        this.imageURL=imageURL;
+    }
 }

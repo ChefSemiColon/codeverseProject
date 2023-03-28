@@ -14,6 +14,11 @@ public class WebsiteApplication {
 		repository.save(new Book("bookName2", "bookAuthor2", 9.99f));
 		repository.save(new Book("bookName3", "bookAuthor2", 9.99f));
 
+		var temp = new Book("bookName", "bookAuthor", 9.99f);
+		temp.setId(1);
+		temp.setTitle("Test");
+		repository.save(temp);
+
 	}
 
 }
