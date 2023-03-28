@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import './App.css';
 import Header from "./components/Header";
 import Container from "./components/Container";
+import { SearchResultsList } from "./components/SearchResultsList";
 import { getAllBooks } from "./services/getbooks";
 import Book from "./components/Book";
 import Bookcase from "./components/Bookcase";
@@ -13,8 +14,9 @@ import Search from "./components/Search";
 function App() {
 
   const [books, setBooks] = useState();
-  const [keyword, setKeyword] = useState([]);
+  const [results, setResults] = useState([]);
   const [basket, setBasket] = useState([]);
+  const [keyword, setKeyword] = useState()
 
   // function addBook(id) {
   //   console.log(`The book was clicked:` + id);
@@ -77,12 +79,15 @@ function App() {
       <Route index
           path="/"
           element={<Container className="bookcase-Container">
+            <div>
             <Search
                 keyword={keyword}
                 books={books}
-                setKeyword={setKeyword}
+                setResults={setResults}
               //  findBooks={findBooks}
               />
+              {results && results.length > 0 && <SearchResultsList results={results}/>}
+              </div>
            <Bookcase books={books}/>
           </Container>}>
           </Route>

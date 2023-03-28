@@ -1,39 +1,46 @@
 import React from "react";
+import { getAllBooks } from "../services/getbooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import { useState } from "react";
 
-    const Search = (props) => {
-        const { keyword, books, setKeyword} = props;
-      
-        const handleChange = (e) => {
-          if(!e.target.value) return setKeyword(books)
 
-          const resultsArr = books.filter(book => book.title.includes(e.target.value) || 
-          book.author.includes(e.target.value))
+    const Search = ({setResults}) => {
+     const [input, setIinput] = useState('');
 
-          setKeyword(resultsArr)
-        }
-       
-        const handleSubmit = (e) => {
-          e.preventDefault()
-        }
+     const fetchData = (value) => {
+      fetch('http://localhost:3007/books').then((response) => response.json())
+      .then((json) => {
+        const results = json.filter((book) => {
+          return (
+            value &&
+            book &&
+            book.author &&
+            book.author.toLowerCase().includes(value)
+          );
+        });
+        setResults(results);
+      });
+     }
+
+     const handleChange = (value) => {
+      setIinput(value);
+      fetchData(value);
+     }
       
         return (
           <header>
-          <form className="search" onSubmit={handleSubmit}>
-              {/* <p style={{ color: "red" }}>
-              <em>{keyword && "Keywords Typed: " + keyword}</em>
-            </p> */}
+          <form className="search">
+            <div>
+            {/* <FontAwesomeIcon icon={faMagnifyingGlass}/> */}
             <input className="search__input"
               type="text"
               id="search"
-              //  value={props.keyword}
-              onChange={handleChange}
+               value={input}
+              onChange={(e) => handleChange(e.target.value)}
               placeholder="Search catalogue"
             />
-            <button className="search_button">
-              <FontAwesomeIcon icon={faMagnifyingGlass}/>
-            </button>
+            </div>
           </form>
           </header>
         );
