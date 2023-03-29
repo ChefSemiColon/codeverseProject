@@ -1,7 +1,5 @@
 package com.codeverseproject.website;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,21 +17,16 @@ public class RESTController {
         return repository.findAll();
     }
 
-    @GetMapping("/hello")
-    public String getHello(){
-        return "Hello!";
-    }
-
-    @RequestMapping("/add/{title}/{author}/{price}")
-    public String addbook(@PathVariable String title, @PathVariable String author, @PathVariable Float price){
-        repository.save(new Book(title, author, price));
+    @RequestMapping("/add/{title}/{author}/{price}/{image}")
+    public String addbook(@PathVariable String title, @PathVariable String author, @PathVariable Float price, @PathVariable String image){
+        repository.save(new Book(title, author, price, image));
         return "Book has been added";
     }
 
-    @RequestMapping("/idsearch/{id}")
-    public Optional<Book> getBookById(@PathVariable Integer id){
-        return repository.findById(id);
-    }
+    // @RequestMapping("/idsearch/{id}")
+    // public Optional<Book> getBookById(@PathVariable Integer id){
+    //     return repository.findById(id);
+    // }
 
     @RequestMapping("/iddelete/{id}")
     public String deleteBookById(@PathVariable Integer id){
@@ -41,26 +34,26 @@ public class RESTController {
         return "Book Deleted";
     }
 
-    @RequestMapping("/titlesearch/{title}")
-    public Iterable<Book> getBookByTitle(@PathVariable String title){
-        return repository.findByTitle(title);
-    }
+    // @RequestMapping("/titlesearch/{title}")
+    // public Iterable<Book> getBookByTitle(@PathVariable String title){
+    //     return repository.findByTitle(title);
+    // }
 
-    @RequestMapping("/authorsearch/{author}")
-    public Iterable<Book> getBookByAuthor(@PathVariable String author){
-        return repository.findByAuthor(author);
-    }
+    // @RequestMapping("/authorsearch/{author}")
+    // public Iterable<Book> getBookByAuthor(@PathVariable String author){
+    //     return repository.findByAuthor(author);
+    //}
 
 
-    @RequestMapping("/add/{id}/{title}/{author}/{price}")
-    public String addbook(@PathVariable Integer id, @PathVariable String title, @PathVariable String author, @PathVariable Float price){
-		var temp = new Book(title, author, price);
+    @RequestMapping("/update/{id}/{title}/{author}/{price}/{image}")
+    public String addbook(@PathVariable Integer id, @PathVariable String title, @PathVariable String author, @PathVariable Float price, @PathVariable String image){
+		var temp = new Book(title, author, price, image);
 		temp.setId(id);
 		repository.save(temp);
         return "Book updated";
     }
 
-    @RequestMapping("/test/{searchTerm}")    
+    @RequestMapping("/search/{searchTerm}")    
     public Iterable<Book> getBooksQuery(@PathVariable String searchTerm){
         System.out.println(repository.findAllQuery(searchTerm));
         return repository.findAllQuery(searchTerm);

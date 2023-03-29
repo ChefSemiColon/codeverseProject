@@ -20,11 +20,11 @@ public class Book {
 
     }
 
-    public Book(String title, String author, Float price){
+    public Book(String title, String author, Float price, String imageURL){
         this.title=title;
         this.author=author;
         this.price=price;
-        this.imageURL = "http://books.google.com/books/content?id=9j4JGEkCA5cC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api";
+        this.imageURL = imageURL;
     }
 
 	public Integer getId() {
