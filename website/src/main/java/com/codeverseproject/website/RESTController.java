@@ -59,4 +59,10 @@ public class RESTController {
 		repository.save(temp);
         return "Book updated";
     }
+
+    @RequestMapping("/test/{searchTerm}")    
+    public Iterable<Book> getBooksQuery(@PathVariable String searchTerm){
+        System.out.println(repository.findAllQuery(searchTerm));
+        return repository.findAllQuery(searchTerm);
+    }
 }
