@@ -1,21 +1,25 @@
-{ "books":
-    [  
-    {
-        "id": 1,
-        "title": "bookName",
-        "author": "bookAuthor",
-        "price": 9.99
-    },
-    {
-        "id": 2,
-        "title": "bookName2",
-        "author": "bookAuthor2",
-        "price": 9.99
-    },
-    {
-        "id": 3,
-        "title": "bookName3",
-        "author": "bookAuthor2",
-        "price": 9.99
-    }
-]}
+{
+    "books": [
+        {
+            "id": 1,
+            "title": "bookName",
+            "author": "bookAuthor",
+            "price": 9.99,
+            "image": "http://books.google.com/books/content?id=9j4JGEkCA5cC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+        },
+        {
+            "id": 2,
+            "title": "bookName2",
+            "author": "bookAuthor2",
+            "price": 9.99,
+            "image": "http://books.google.com/books/content?id=9j4JGEkCA5cC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+        },
+        {
+            "id": 3,
+            "title": "bookName3",
+            "author": "bookAuthor2",
+            "price": 9.99,
+            "image": "http://books.google.com/books/content?id=9j4JGEkCA5cC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+        }
+    ]
+}

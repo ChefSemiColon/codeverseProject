@@ -1,8 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, json } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import './App.css';
 import Header from "./components/Header";
 import Container from "./components/Container";
+import { SearchResultsList } from "./components/SearchResultsList";
 import { getAllBooks } from "./services/getbooks";
 import Book from "./components/Book";
 import Bookcase from "./components/Bookcase";
@@ -13,24 +14,42 @@ import Search from "./components/Search";
 function App() {
 
   const [books, setBooks] = useState();
-  const [keyword, setKeyword] = useState("");
+  const [results, setResults] = useState([]);
   const [basket, setBasket] = useState([]);
+  const [keyword, setKeyword] = useState()
 
   // function addBook(id) {
   //   console.log(`The book was clicked:` + id);
   // }
+  // async function findBooks(value) {
+  //   const url = `https://www.googleapis.com/books/v1/volumes?q=${value}&filter=paid-ebooks&print-type=books&projection=lite`;
 
-  function getFetchUsers() {
-    this.setState({
-        loading: true
-    }, () => {
-        fetch("http://localhost:3004/db.json").then(res => res.json()).then(result => this.setState({
-            loading: false,
-            users: result
-        })).catch(console.log);
-    });
+  //   const results = await fetch(url).then((res) => res.json());
+  //   if (!results.error) {
+  //     setBooks(results.items);
+  //   }
+  // }
+
+
+  useEffect(() => {
+   getAllBooks().then(json => {
+    setBooks(json)
+   }).then(json => {
+    setKeyword(json)
+   })
+  }, [])
+
+//   function getFetchUsers() {
+//     this.setState({
+//         loading: true
+//     }, () => {
+//         fetch("http://localhost:3004/db.json").then(res => res.json()).then(result => this.setState({
+//             loading: false,
+//             users: result
+//         })).catch(console.log);
+//     });
     
-}
+// }
   useEffect(() => {
     async function fetchBooks() {
       if (!books) {
@@ -60,11 +79,15 @@ function App() {
       <Route index
           path="/"
           element={<Container className="bookcase-Container">
+            <div>
             <Search
                 keyword={keyword}
-                setKeyword={setKeyword}
-                // findBooks={findBooks}
+                books={books}
+                setResults={setResults}
+              //  findBooks={findBooks}
               />
+              {results && results.length > 0 && <SearchResultsList results={results}/>}
+              </div>
            <Bookcase books={books}/>
           </Container>}>
           </Route>
