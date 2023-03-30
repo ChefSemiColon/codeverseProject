@@ -8,13 +8,14 @@ const Book = (props) => {
         <img
           src={book.image}
           alt={book.title}
+          height={200}
         />
           <h2>{book.title}</h2>
           <h2>{book.author}</h2>
           <p>{book.price}</p>
         </ul>
         
-       {/* <button onClick={() => props.onClick(props.id)}> { props.isInTheBasket ? "Remove" : "Add +"}</button> */}
+       <button onClick={() => props.onClick(props.id)}> { props.isInTheBasket ? "Remove" : "Add +"}</button>
       </div>
     );
   };
