@@ -5,6 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @RestController
 public class RESTController {
@@ -12,7 +16,7 @@ public class RESTController {
     @Autowired
     BookRepository repository;
 
-    @GetMapping("/home")
+    @GetMapping("/Home")
     public Iterable<Book> getBooks(){
         return repository.findAll();
     }
@@ -53,9 +57,16 @@ public class RESTController {
         return "Book updated";
     }
 
-    @RequestMapping("/search/{searchTerm}")    
-    public Iterable<Book> getBooksQuery(@PathVariable String searchTerm){
-        System.out.println(repository.findAllQuery(searchTerm));
-        return repository.findAllQuery(searchTerm);
+    @GetMapping("/books/search/")
+    @ResponseBody    
+    public Iterable<Book> getBooksQuery(@RequestParam  String q){
+        System.out.println(repository.findAllQuery(q));
+        return repository.findAllQuery(q);
     }
+
+    
+
+
+
+
 }
