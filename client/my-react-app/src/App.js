@@ -10,6 +10,9 @@ import Search from "./components/Search";
 import BookCart from "./components/BookCart";
 import Book from "./components/Book";
 import { CreateBook } from "./components/CreateBook";
+import axios from 'axios';
+
+
 
 // GET DATA AND IMPORT
 
@@ -20,18 +23,34 @@ function App() {
   const [results, setResults] = useState([]);
   const [basket, setBasket] = useState([]);
   const [keyword, setKeyword] = useState("")
+  const [input, setInput] = useState("");
 
   // function addBook(id) {
   //   console.log(`The book was clicked:` + id);
   // }
   async function findBooks(searchTerm) {
-    const url = `http://localhost:3007/books/search/?q=${searchTerm}`;
+    const url = `http://localhost:3007/books?q=${searchTerm}`;
 
-    const results = await fetch(url).then((res) => res.json());
-    if (!results.error) {
-      setBooks(results.items);
+    const searchResults = await fetch(url).then((res) => res.json());
+    // console.log(searchResults)
+    if (!searchResults.error) {
+      setBooks(searchResults);
     }
   }
+
+
+  // const [result, setResult] = useState('');
+
+  // const fetchData = async (searchTerm) => {
+  //   const { data } = await axios.get(
+  //     `http://localhost:3007/books?q=${searchTerm}`
+  //   );
+
+  //   return data.books;
+    
+  // };
+
+
 
 
   useEffect(() => {
@@ -43,28 +62,19 @@ function App() {
     })
   }, [])
 
-  //   function getFetchUsers() {
-  //     this.setState({
-  //         loading: true
-  //     }, () => {
-  //         fetch("http://localhost:3004/db.json").then(res => res.json()).then(result => this.setState({
-  //             loading: false,
-  //             users: result
-  //         })).catch(console.log);
-  //     });
+  
 
-  // }
-  useEffect(() => {
-    async function fetchBooks() {
-      if (!books) {
-        const response = await getAllBooks();
-        setBooks(response);
+  // useEffect(() => {
+  //   async function fetchBooks() {
+  //     if (!books) {
+  //       const response = await getAllBooks();
+  //       setBooks(response);
+  //       setResults(response)
+  //     }
+  //   }
 
-      }
-    }
-
-    fetchBooks();
-  }, [books]);
+  //   fetchBooks();
+  // }, [books]);
 
 
 
@@ -78,9 +88,11 @@ function App() {
 
   const removeBookFromCart = (id) => {
     const newItems = [];
-    basket.forEach((books) => {
-      if (books.id === id) {
-        newItems.push(books);
+    basket.forEach((book) => {
+      if (book.id === id) {
+        newItems.push(book);
+      } else {
+        book.inBasket = !book.inBasket;
       }
       return books;
     });
@@ -99,11 +111,23 @@ function App() {
           element={
             <Container className="bookcase-Container">
               <Search
-                keyword={keyword}
+                // keyword={keyword}
                 setKeyword={setKeyword}
                 findBooks={findBooks}
+                results={books}
                 books={books}
+                setResults={setResults}
+                input={input}
+                setInput={setInput}
+                setBooks={setBooks}
               
+                
+                // {...books.map((book) => (
+                //   <Book
+                //     key={book.id}
+                //     title={book.title}
+                //   />
+                // ))}
               />
               {books && books.length > 0
                 ? books.map((book) => (
@@ -129,16 +153,10 @@ function App() {
         <Route
           path="/About"
           element={
-            <div className="">
-            <h3 className="font-medium text-center text-lg">
-              Welcome to BookScope! <br/> In this application you can browse for books
-              in the catalogue or search for books in the search bar. If you
-              like a book, add it to the cart. If you change your mind, simply
-              remove the item from the basket. If you would like more
-              information on a book, click on more information. There you will
-              see a description of the book.
-            </h3>
-            </div>
+            <div>
+     
+    
+    </div>
           }
         />
       </Routes>
