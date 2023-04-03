@@ -25,7 +25,7 @@ function App() {
   //   console.log(`The book was clicked:` + id);
   // }
   async function findBooks(searchTerm) {
-    const url = `http://localhost:3007/books/search/?q=${searchTerm}`;
+    const url = `http://localhost:8080/books/search/?q=${searchTerm}`;
 
     const results = await fetch(url).then((res) => res.json());
     if (!results.error) {
