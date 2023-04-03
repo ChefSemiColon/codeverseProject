@@ -10,7 +10,7 @@ public class WebsiteApplication {
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(WebsiteApplication.class, args);
 		BookRepository repository = context.getBean(BookRepository.class);
-		repository.save(new Book("Things Fall Apart", "Chinua Achebe", 9.99f, "https://en.wikipedia.org/wiki/Things_Fall_Apart#/media/File:ThingsFallApart.jpg"));
+		repository.save(new Book("Things Fall Apart", "Chinua Achebe", 9.99f, "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81H+63TZuFL.jpg"));
 		repository.save(new Book("Fairy tales", "Hans Christian Andersen", 9.99f, "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781839642272/hans-christian-andersen-fairy-tales-9781839642272_lg.jpg"));
 		repository.save(new Book("The Divine Comedy", "Dante Alighieri", 9.99f, "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/910RVMMAJpL.jpg"));
 		repository.save(new Book("The Epic Of Gilgamesh", "Unknown", 9.99f, "https://cdn.shopify.com/s/files/1/0534/0027/3064/products/theepicofgilgamesh_580x.jpg?v=1619559611"));
