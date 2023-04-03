@@ -35,7 +35,7 @@ const Search = (props) => {
         value={input}
         onChange={handleChange}
       />
-      <input type="submit" onClick={onSubmit} />
+      <button type="submit" onClick={onSubmit} />
     </form>
     
     </div>
