@@ -7,6 +7,9 @@ export default function Header (props) {
     return <>
         <h1 style={{ backgroundColor: "#4297A0" }} className="text-amber-500 text-4xl">BookCase App</h1>
         <div>
+            <Link to="/Login"></Link>
+        </div>
+        <div>
         <Link to="/">Home</Link>
         </div>
         <div>

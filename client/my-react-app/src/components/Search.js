@@ -5,7 +5,7 @@ import { useState } from 'react';
 const Search = (props) => {
   const { keyword, findBooks, books, results, input, setInput} = props;
 
-  console.log(books)
+  // console.log(books)
 
   
   const handleChange = (changeEvent) => {
@@ -16,7 +16,7 @@ const Search = (props) => {
     setInput(changeEvent.target.value);
     console.log("Someone Typed event =>", changeEvent);
   }
-  console.log(results)
+  // console.log(results)
   function onSubmit (event) {
     event.preventDefault()
     findBooks(input)
@@ -35,7 +35,7 @@ const Search = (props) => {
         value={input}
         onChange={handleChange}
       />
-      <button type="submit" onClick={onSubmit} />
+      <button type="submit" onClick={onSubmit}>Search</button>
     </form>
     
     </div>
