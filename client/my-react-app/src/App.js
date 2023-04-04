@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import './App.css';
+import "./App.css";
 import Header from "./components/Header";
 import Container from "./components/Container";
 import { getAllBooks } from "./services/getbooks";
@@ -11,25 +11,17 @@ import BookCart from "./components/BookCart";
 import Book from "./components/Book";
 import Authentication from "./components/Authentication";
 
-
-
-
 // GET DATA AND IMPORT
 
-
 function App() {
-
   const [books, setBooks] = useState([]);
   const [results, setResults] = useState([]);
   const [basket, setBasket] = useState([]);
-  const [keyword, setKeyword] = useState("")
+  const [keyword, setKeyword] = useState("");
   const [input, setInput] = useState("");
 
-
   async function findBooks(searchTerm) {
-
     const url = `http://localhost:3007/books?q=${searchTerm}`;
-
 
     const searchResults = await fetch(url).then((res) => res.json());
     // console.log(searchResults)
@@ -38,35 +30,18 @@ function App() {
     }
   }
 
-
-  // const [result, setResult] = useState('');
-
-  // const fetchData = async (searchTerm) => {
-  //   const { data } = await axios.get(
-  //     `http://localhost:3007/books?q=${searchTerm}`
-  //   );
-
-  //   return data.books;
-    
-  // };
-
-
-
-
   useEffect(() => {
-    getAllBooks().then(json => {
-      setBooks(json)
-    }).then(json => {
-      setKeyword(json);
-      setResults(json)
-    })
-  }, [])
+    getAllBooks()
+      .then((json) => {
+        setBooks(json);
+      })
+      .then((json) => {
+        setKeyword(json);
+        setResults(json);
+      });
+  }, []);
 
-  
-
-  
-
- function addBookToCart(book) {
+  function addBookToCart(book) {
     console.log(book);
     const newBasket = basket;
     newBasket.push(book);
@@ -93,7 +68,7 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-      <Route path="/Authentication" element={<Authentication />} />
+        <Route path="/Authentication" element={<Authentication />} />
         <Route
           index
           path="/"
@@ -109,14 +84,6 @@ function App() {
                 input={input}
                 setInput={setInput}
                 setBooks={setBooks}
-              
-                
-                // {...books.map((book) => (
-                //   <Book
-                //     key={book.id}
-                //     title={book.title}
-                //   />
-                // ))}
               />
               {books && books.length > 0
                 ? books.map((book) => (
@@ -139,15 +106,7 @@ function App() {
             <Bookcase books={basket} removeBookFromCart={removeBookFromCart} />
           }
         />
-        <Route
-          path="/About"
-          element={
-            <div>
-   
-    
-    </div>
-          }
-        />
+        <Route path="/About" element={<div></div>} />
       </Routes>
     </div>
   );

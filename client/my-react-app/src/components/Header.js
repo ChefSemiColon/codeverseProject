@@ -1,22 +1,26 @@
 import { Link } from "react-router-dom";
 
-
-
-export default function Header (props) {
- 
-    return <>
-        <h1 style={{ backgroundColor: "#4297A0" }} className="text-amber-500 text-4xl">BookCase App</h1>
-        <div>
+export default function Header(props) {
+  return (
+    <>
+      <h1
+        style={{ backgroundColor: "#4297A0" }}
+        className="text-amber-500 text-4xl"
+      >
+        BookCase App
+      </h1>
+      <div>
         <Link to="/Authentication">Login</Link>
-        </div>
-        <div>
+      </div>
+      <div>
         <Link to="/">Home</Link>
-        </div>
-        <div>
-        <Link to="/Bookcase" >Book Cart</Link>
-        </div>
-        <div>
+      </div>
+      <div>
+        <Link to="/Bookcase">Book Cart</Link>
+      </div>
+      <div>
         <Link to="/About">About</Link>
-        </div>
-        </>
+      </div>
+    </>
+  );
 }

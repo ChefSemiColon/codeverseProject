@@ -2,7 +2,7 @@ import React from "react";
 import Book from "./Book";
 
 export default function BookCart({ books, removeBookFromCart }) {
-  console.log(books)
+  console.log(books);
   return (
     <div className="">
       {books[0] ? (
@@ -10,7 +10,12 @@ export default function BookCart({ books, removeBookFromCart }) {
           <h1>Cart</h1>
           <h1>{books.length}</h1>
           {books.map((book) => (
-            <Book book={book} removeBookFromCart={removeBookFromCart} key={book.id} inBasket={true} />
+            <Book
+              book={book}
+              removeBookFromCart={removeBookFromCart}
+              key={book.id}
+              inBasket={true}
+            />
           ))}
         </div>
       ) : (

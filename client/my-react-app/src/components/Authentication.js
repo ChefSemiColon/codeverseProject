@@ -1,29 +1,27 @@
-
-import React from "react"
+import React from "react";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-export default function Authentication (props) {
+export default function Authentication(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-        const [username, setUsername] = useState('');
-        const [password, setPassword] = useState('');
-      
-        const handleSubmit = (e) => {
-          e.preventDefault()};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
-          const requestBody = {
-            username,
-            password,
-          };
-          fetch("`http://localhost:8080/login/{username}/{password}", {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            method: "POST",
-            body: JSON.stringify(requestBody),
-          })
-         
-        
+  const requestBody = {
+    username,
+    password,
+  };
+  fetch("`http://localhost:8080/login/{username}/{password}", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify(requestBody),
+  });
+
   return (
     <div className="Auth-form-container">
       <form className="Auth-form">
@@ -53,5 +51,5 @@ export default function Authentication (props) {
         </div>
       </form>
     </div>
-  )
-  }
+  );
+}

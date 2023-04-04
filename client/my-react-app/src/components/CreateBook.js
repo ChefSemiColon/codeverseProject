@@ -5,106 +5,102 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-
 export const CreateBook = (props) => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
+  const [book, setBook] = useState({
+    id: "",
+    title: "",
+    author: "",
+    price: "",
+    image: "",
+  });
+  const onChange = (e) => {
+    setBook({ ...book, [e.target.name]: e.target.value });
+  };
 
-const [book, setBook] = useState({
-id: "",
-title: "",
-author: "",
-price: "",
-image:""
-});
-const onChange = (e) => {
-    setBook({...book, [e.target.name]: e.target.value})
-}
-
-const onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-}
+  };
 
-// axios
-// .post('http://localhost:3007/books', book)
-// .then((res) => {
-//     setBook({
-//         id: "",
-//         title: "",
-//         author: "",
-//         price: "",
-//         image:""
-//         });
+  // axios
+  // .post('http://localhost:3007/books', book)
+  // .then((res) => {
+  //     setBook({
+  //         id: "",
+  //         title: "",
+  //         author: "",
+  //         price: "",
+  //         image:""
+  //         });
 
-        
-// navigate("/");
-// })
-// .catch((err) => {
-//     console.log('Error in CreateBook!');
-//   });
+  // navigate("/");
+  // })
+  // .catch((err) => {
+  //     console.log('Error in CreateBook!');
+  //   });
   return (
-    <div className='CreateBook'>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-md-8 m-auto'>
+    <div className="CreateBook">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-8 m-auto">
             <br />
-            <Link to='/' className='btn btn-outline-warning float-left'>
+            <Link to="/" className="btn btn-outline-warning float-left">
               Show BooK List
             </Link>
           </div>
-          <div className='col-md-8 m-auto'>
-            <h1 className='display-4 text-center'>Add Book</h1>
-            <p className='lead text-center'>Create new book</p>
+          <div className="col-md-8 m-auto">
+            <h1 className="display-4 text-center">Add Book</h1>
+            <p className="lead text-center">Create new book</p>
 
-            <form  onSubmit={onSubmit}>
-              <div className='form-group'>
+            <form onSubmit={onSubmit}>
+              <div className="form-group">
                 <input
-                  type='text'
-                  placeholder='Title of the Book'
-                  name='title'
-                  className='form-control'
+                  type="text"
+                  placeholder="Title of the Book"
+                  name="title"
+                  className="form-control"
                   value={book.title}
                   onChange={onChange}
                 />
               </div>
               <br />
 
-              
-              <div className='form-group'>
+              <div className="form-group">
                 <input
-                  type='text'
-                  placeholder='Author'
-                  name='author'
-                  className='form-control'
+                  type="text"
+                  placeholder="Author"
+                  name="author"
+                  className="form-control"
                   value={book.author}
                   onChange={onChange}
                 />
               </div>
 
-              <div className='form-group'>
+              <div className="form-group">
                 <input
-                  type='text'
-                  placeholder='Price'
-                  name='price'
-                  className='form-control'
+                  type="text"
+                  placeholder="Price"
+                  name="price"
+                  className="form-control"
                   value={book.price}
                   onChange={onChange}
                 />
               </div>
 
-              <div className='form-group'>
+              <div className="form-group">
                 <input
-                  type='date'
-                  placeholder='Id'
-                  name='Id'
-                  className='form-control'
+                  type="date"
+                  placeholder="Id"
+                  name="Id"
+                  className="form-control"
                   value={book.id}
                   onChange={onChange}
                 />
               </div>
               <input
-                type='submit'
-                className='btn btn-outline-warning btn-block mt-4'
+                type="submit"
+                className="btn btn-outline-warning btn-block mt-4"
               />
             </form>
           </div>
@@ -112,4 +108,4 @@ const onSubmit = (e) => {
       </div>
     </div>
   );
-}
+};
