@@ -25,7 +25,6 @@ const Search = (props) => {
   return (
     <div>
       <form>
-        <FontAwesomeIcon icon={faMagnifyingGlass} />
         <p style={{ color: "red" }}>
           <em>{keyword && "Keywords Typed: " + keyword}</em>
         </p>
@@ -34,11 +33,13 @@ const Search = (props) => {
           type="text"
           value={input}
           onChange={handleChange}
+          placeholder="Search for your favourite classic books..."
         />
         <button type="submit" onClick={onSubmit}>
           Search
         </button>
       </form>
+      <FontAwesomeIcon icon={faMagnifyingGlass} />
     </div>
   );
 };
