@@ -1,14 +1,15 @@
-import { Routes, Route, json } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import Header from "./components/Header";
 import Container from "./components/Container";
-import Login from "./components/Login";
 import { getAllBooks } from "./services/getbooks";
 import Bookcase from "./components/Bookcase";
 import Search from "./components/Search";
 import BookCart from "./components/BookCart";
 import Book from "./components/Book";
+import Authentication from "./components/Authentication";
 
 
 
@@ -63,19 +64,7 @@ function App() {
 
   
 
-  // useEffect(() => {
-  //   async function fetchBooks() {
-  //     if (!books) {
-  //       const response = await getAllBooks();
-  //       setBooks(response);
-  //       setResults(response)
-  //     }
-  //   }
-
-  //   fetchBooks();
-  // }, [books]);
-
-
+  
 
  function addBookToCart(book) {
     console.log(book);
@@ -104,6 +93,7 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
+      <Route path="/Authentication" element={<Authentication />} />
         <Route
           index
           path="/"
@@ -153,7 +143,7 @@ function App() {
           path="/About"
           element={
             <div>
-     <Login/>
+   
     
     </div>
           }
