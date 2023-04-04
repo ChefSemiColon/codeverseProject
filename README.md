@@ -32,3 +32,23 @@ While unfortunate I was unable to complete JWT Authentication due to multiple er
 
 Frontend Progress
 =====
+
+Running the application Frontend 
+
+-Install json server with the following command:
+npm i json-server
+-Run the following command to start the server:
+json-server --port 8080/allbooks--watch db.json
+-Once running, open another terminal and run npm start. This return all books in the database.
+
+What the application can do so far:
+1.Add and remove books from the basket.
+-Limitation: when removing multiple item from the basket the remove button may remove multiple books and not a selected book.
+This is something I am working on fixing
+2.Display all the books from the database
+3.Search for a specific book in the database 
+4.Test the Header element with the command npm run test.
+
+What the application cannot do yet:
+1.Authenticate a user
+-The Login is a work in progress. I am currently working on understanding concepts of authentication and authoristaion and the use of tokens.
