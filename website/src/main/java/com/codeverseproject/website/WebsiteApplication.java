@@ -4,12 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+
 @SpringBootApplication
 public class WebsiteApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(WebsiteApplication.class, args);
 		BookRepository repository = context.getBean(BookRepository.class);
+		UserRepository userRepository = context.getBean(UserRepository.class);
 		repository.save(new Book("Things Fall Apart", "Chinua Achebe", 9.99f, "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/81H+63TZuFL.jpg"));
 		repository.save(new Book("Fairy tales", "Hans Christian Andersen", 9.99f, "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781839642272/hans-christian-andersen-fairy-tales-9781839642272_lg.jpg"));
 		repository.save(new Book("The Divine Comedy", "Dante Alighieri", 9.99f, "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/910RVMMAJpL.jpg"));
@@ -21,7 +23,7 @@ public class WebsiteApplication {
 		repository.save(new Book("The Decameron", "Giovanni Boccaccio", 9.99f, "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/91rwRXdasRL.jpg"));
 		repository.save(new Book("Great Expectations", "Charles Dickens", 9.99f,"https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/810zoOnbK8L.jpg"));
 
-
+		userRepository.save(new SiteUser("username", "password"));
 	}
 
 }

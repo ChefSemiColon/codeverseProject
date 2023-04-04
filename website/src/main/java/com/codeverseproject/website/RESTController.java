@@ -15,7 +15,10 @@ public class RESTController {
     @Autowired
     BookRepository repository;
 
-    @GetMapping("/books")
+    @Autowired
+    UserRepository userRepository;
+
+    @GetMapping("/allbooks")
     public Iterable<Book> getBooks(){
         return repository.findAll();
     }
@@ -26,27 +29,11 @@ public class RESTController {
         return "Book has been added";
     }
 
-    // @RequestMapping("/idsearch/{id}")
-    // public Optional<Book> getBookById(@PathVariable Integer id){
-    //     return repository.findById(id);
-    // }
-
     @RequestMapping("/iddelete/{id}")
     public String deleteBookById(@PathVariable Integer id){
         repository.deleteById(id);
         return "Book Deleted";
     }
-
-    // @RequestMapping("/titlesearch/{title}")
-    // public Iterable<Book> getBookByTitle(@PathVariable String title){
-    //     return repository.findByTitle(title);
-    // }
-
-    // @RequestMapping("/authorsearch/{author}")
-    // public Iterable<Book> getBookByAuthor(@PathVariable String author){
-    //     return repository.findByAuthor(author);
-    //}
-
 
     @RequestMapping("/update/{id}/{title}/{author}/{price}/{image}")
     public String addbook(@PathVariable Integer id, @PathVariable String title, @PathVariable String author, @PathVariable Float price, @PathVariable String image){
@@ -56,11 +43,17 @@ public class RESTController {
         return "Book updated";
     }
 
-    @GetMapping("/books/search/")
+    @GetMapping("/books")
     @ResponseBody    
     public Iterable<Book> getBooksQuery(@RequestParam  String q){
-        System.out.println(repository.findAllQuery(q));
         return repository.findAllQuery(q);
     }
 
+    @GetMapping("/login/{username}/{password}")
+    @ResponseBody
+    public Boolean verifyUser(@PathVariable String username, @PathVariable String password){
+        var temp2 = userRepository.findUser(username,password);
+        System.out.println(password);
+        return temp2 == null ? false : true;
+    }
 }
