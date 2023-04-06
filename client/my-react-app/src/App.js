@@ -21,7 +21,7 @@ function App() {
   const [input, setInput] = useState("");
 
   async function findBooks(searchTerm) {
-    const url = `http://localhost:3007/allbooks?q=${searchTerm}`;
+    const url = `http://localhost:8080/books?q=${searchTerm}`;
 
     const searchResults = await fetch(url).then((res) => res.json());
     // console.log(searchResults)
